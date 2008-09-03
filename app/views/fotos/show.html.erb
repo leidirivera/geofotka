@@ -1,0 +1,19 @@
+<p>
+  <b>File:</b>
+  <em><%=h @foto.file_path %></em>
+</p>
+
+<p>
+<a href="<%= @foto.path %>">
+  <%= @foto.middle_thumb_tag %>
+</a>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%=h @foto.description %>
+</p>
+
+<%= link_to 'Back', :action => 'show',
+  :controller => 'galleries',
+  :id => @foto.gallery  %>

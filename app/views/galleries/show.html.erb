@@ -1,0 +1,62 @@
+<h1>Listing gallery <%=h @gallery.name %>
+</h1>
+
+<p>
+  <b>~
+  <%= link_to h(@gallery.user.login), 
+    :action => 'profile', 
+    :controller => 'users', :id =>@gallery.user 
+  %>:
+  <%=h @gallery.description %>
+</p>
+
+
+<% if @gallery.fotos.empty? %>
+<p>There is no photography in this gallery.</p>
+<% else %>
+  <table>
+  <% for foto in @gallery.fotos %>
+   <tr>
+    <td>
+	<%= link_to foto.thumb_tag, 
+	 :action => 'map', 
+	 :controller => 'fotos',
+	 :id => foto 
+	%>
+	</td
+	<td>
+	 <strong><%=h foto.file_path %></strong>
+	 <p><%=h foto.description %></p>
+		  
+	 <span>Coordinates:</span>
+	 <ul>
+	  <li>Latitudes: <%=h foto.latitudes %></li>
+	  <li>Longitudes: <%=h foto.longitudes %></li>
+	 </ul>
+		   
+     <p>	
+	  <%= link_to 'Show', 
+	   :action => 'show', 
+	   :controller => 'fotos',
+	   :id => foto 
+	  %>	 
+	  <%= link_to 'Edit', 
+	    edit_foto_path(foto) if logged_in? %>
+      <%= link_to 'Destroy', foto,
+        :confirm => 'Are you sure?',
+		    :method => :delete if logged_in?
+	  %>
+     </p>
+	  
+	</td>
+   </tr>
+  <% end %>
+  </table>
+<% end %>
+
+<%= link_to "User Galleries", :action => 'galleries', 
+  :controller => 'users', :id => @gallery.user %> | 
+<%= link_to 'New fotography', :action => 'new',
+  :controller => 'fotos',
+  :id => @gallery if logged_in? %> |
+<%= link_to 'Galleries', galleries_path %>

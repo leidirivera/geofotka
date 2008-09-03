@@ -1,0 +1,27 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+  
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+    <title>Geofotka</title>
+	<%= yield(:head) %>
+    <%= stylesheet_link_tag 'scaffold' %>	
+  </head>
+   
+  <body>
+    <a href="/">Main Page</a>
+    <p style="color: green"><%= flash[:notice] %></p>
+	<%= 
+	  "Logged in as 
+	  #{link_to h(current_user.login), 
+	   :action => 'profile', :controller => 'users', :id => current_user
+	  }. 
+	  
+	  <a href=\"/logout\">Logout</a>." if ! current_user.nil?
+	%>
+	<%= "You are administrator!" if is_admin? %>
+    <%= yield  %>
+	
+  </body>
+</html>

@@ -1,0 +1,23 @@
+<h1>Listing fotos</h1>
+
+<table>
+  <tr>
+    <th>File</th>
+    <th>Description</th>
+    <th>Gallery</th>
+  </tr>
+
+<% for foto in @fotos %>
+  <tr>
+    <td><%=link_to h(foto.file_path), foto %></td>
+    <td><%=h foto.description %></td>
+    <td><%=h foto.gallery.name %></td>
+    <td><%#= link_to 'Edit', edit_foto_path(foto) %></td>
+    <td><%#= link_to 'Destroy', foto, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%#= link_to 'New foto', new_foto_path %>

@@ -1,0 +1,14 @@
+<p>
+  <strong>Login</strong>
+  <%=h @user.login %>
+</p>
+
+<p>
+  <strong>E-mail</strong>
+  <%=h @user.email %>
+</p>
+
+
+<%= link_to 'Edit', edit_profile_path(@profile) %> |
+<%= link_to 'Galleries', :action => 'galleries', :id => @user %> |
+<%= link_to 'Users', :action => 'index', :controller => 'users', :id => nil %>

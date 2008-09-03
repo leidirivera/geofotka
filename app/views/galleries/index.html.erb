@@ -1,0 +1,40 @@
+<h1>Listing galleries of 
+~<%= link_to h(@user.login), :action => 'profile', 
+  :controller => 'users', :id => params[:id] if ! params[:id].nil? %>
+</h1>
+
+<% if @galleries.empty? %>
+<p>There is no galllery.</p>
+<% else %>
+
+<table>
+  <tr>
+<% columns = 3 %> 
+<% i=0 %>
+<% for gallery in @galleries %>
+    <%= "</tr><tr>" if i % columns == 0 %>
+	<% i=i+1 %>
+	
+    <td>
+	<strong><%=h gallery.name %></strong><br />
+	<%= link_to gallery.first_thumb, gallery %>
+	<br />
+	<%=h gallery.description %>
+	<br />
+	<%= link_to 'Edit', 
+	  edit_gallery_path(gallery) if logged_in? %>
+	<%= link_to 'Destroy', gallery, :confirm => 'Are you sure?',
+      :method => :delete if logged_in? %>	
+	</td>
+<% end %>
+<%= "<td>&nbsp;</td>" * (columns - @galleries.length%columns) %>
+
+</tr>
+</table>
+
+<% end %>
+
+<br />
+
+<%= link_to 'New gallery', 
+  new_gallery_path if logged_in? %>

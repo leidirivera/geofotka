@@ -1,0 +1,36 @@
+<h1>Listing users</h1>
+
+<% if @users.empty? %>
+ <p>There is no user to display.</p>
+<% else %>
+ <table>
+  <tr>
+    <th>Name</th>
+    <th>Email</th>
+	<th>&nbsp;</th>
+	<th>&nbsp;</th>
+  </tr>
+
+ <% for user in @users %>
+  <tr>
+    <td><%= link_to h(user.login),
+	 :action => 'profile', :id => user %></td>
+    <td><%=h user.email %></td>
+	<td><%= link_to 'Show galleries', 
+	  :action => 'galleries', :id => user %></td>
+	
+	<td>
+	  <% if is_admin? %>
+       <%= link_to 'Edit', edit_user_path(user) %> | 
+       <%= link_to 'Destroy', user,
+	    :confirm => 'Are you sure?',
+		:method => :delete %>
+	  <% end %>
+	  &nbsp;
+	</td>
+  </tr>
+ <% end %>
+ </table>
+<% end %>
+
+<br />

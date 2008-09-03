@@ -1,0 +1,27 @@
+<% add_to_head 'public/javascripts/gmaps-key.js' %>
+<% add_javascript 'gmaps' %>
+
+<div id="warning" style="color: red"><p>You probably 
+don't have JavaScript turned on or  there  is    no
+connection to the Internet.
+</p></div>
+
+<div id="map"></div>
+<p>
+  latitude:<span id="latitude">
+    <%=h @foto.latitudes %></span>
+  longitude: <span id="longitude">
+    <%=h @foto.longitudes %></span>
+</p>
+
+<div id="info">
+  <b>File:</b>
+  <em><%=h @foto.file_path %></em><br />
+  <%= @foto.thumb_tag %><br />
+  <b>Description:</b>
+  <%=h @foto.description %>
+</div>
+
+<%= link_to 'Back', :action => 'show',
+  :controller => 'galleries',
+  :id => @foto.gallery  %>
